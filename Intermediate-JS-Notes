@@ -1,0 +1,925 @@
+##intermediate-JS
+
+#Week 1
+
+**Frames and Windows**
+1. **Scrolling Window Methods:**
+
+   - JavaScript provides methods to control scrolling within a window:
+     - `win.scrollBy(x, y)`: Scrolls the window by a specified number of pixels to the right (x) and down (y) relative to its current scroll position. Negative values can be used to scroll left or up.
+     - `win.scrollTo(x, y)`: Scrolls the window to specific coordinates (x, y) on the page.
+
+2. **Scrolling Element Method:**
+
+   - The `elem.scrollIntoView(top = true)` method scrolls the window to make an HTML element (referred to by `elem`) visible. By default, it positions the element at the top of the viewport (`top = true`). If `top` is set to `false`, it scrolls to make the element appear at the bottom of the viewport.
+
+3. **Scrolling Events:**
+
+   - The `window.onscroll` event is triggered when the user scrolls the window. You can use this event to detect when the user is scrolling and take actions accordingly in your JavaScript code.
+
+4. **Smooth Scrolling:**
+
+   - To create a smoother scrolling effect, you can use CSS or JavaScript libraries like jQuery to animate scrolling.
+
+5. **Scroll Behavior Property:**
+
+   - You can set the `scroll-behavior` CSS property to `smooth` to enable smooth scrolling behavior for the entire page. This makes the scrolling animation more visually appealing.
+
+6. **Use Cases:**
+
+   - Scrolling methods and events are commonly used for various purposes, such as implementing smooth scrolling navigation, creating one-page websites, and ensuring specific content is visible when navigating through long pages.
+
+7. **Responsive Design:**
+
+   - When implementing scrolling behavior, consider responsive design principles to ensure a consistent user experience across different devices and screen sizes.
+
+JavaScript provides methods and events for controlling scrolling behavior within windows and elements. These features can be used to enhance user navigation and interactions on web pages, and they are especially useful when creating single-page applications or smooth scrolling effects.
+
+
+
+1. **Focusing and Blurring Windows:**
+
+   - JavaScript provides methods to programmatically focus and blur browser windows:
+     - `window.focus()`: This method is used to bring a window to the foreground and give it focus. It's commonly used with popup windows to ensure they are in the user's view.
+     - `window.blur()`: This method is used to remove focus from a window, effectively causing it to lose focus.
+
+2. **Events for Window Focus:**
+
+   - The `window.onfocus` event is triggered when a window receives focus (i.e., becomes the active window).
+   - The `window.onblur` event is triggered when a window loses focus (i.e., another window becomes the active window).
+
+3. **Security Measures:**
+
+   - Browsers have implemented security measures to prevent abuse of the `window.focus()` and `window.blur()` methods.
+   - For example, mobile browsers may ignore these calls entirely, and some browsers may prevent focusing on popups that open in separate tabs rather than new windows.
+
+4. **Use Cases for Focusing and Blurring:**
+
+   - Focusing and blurring windows can be useful for managing the user's attention within a web application.
+   - For example, you might use `window.focus()` to ensure that a newly opened popup is in the user's view, and `window.blur()` might be used when transitioning to another window or tab to indicate that it's no longer active.
+
+5. **Tracking User Activity:**
+
+   - You can use the `window.onfocus` and `window.onblur` events to track when a visitor is actively using your web application.
+   - For example, you might pause animations or background processes when the user switches to another window (onblur) and resume them when they return (onfocus).
+
+6. **Limitations and Variability:**
+
+   - Browser behavior regarding window focus and blur events can vary, and some behaviors are platform-specific.
+   - The behavior of these methods may also depend on the browser's popup blocking policies and user settings.
+
+7. **User Experience Considerations:**
+
+   - While you can use these methods to manage window focus, it's important to prioritize a positive user experience and avoid intrusive behaviors that might annoy or disrupt users.
+
+Cross-Window Communication
+
+### Same-Origin Policy:
+- Defines which web pages can interact with each other based on the origin (protocol, domain, and port).
+- Ensures security by preventing malicious scripts on one site from accessing or manipulating data on another.
+
+### Accessing Embedded Window and Document:
+- Use `iframe.contentWindow` to access the window within an `<iframe>`.
+- Use `iframe.contentDocument` (or `iframe.contentWindow.document`) to access the document within an `<iframe>`.
+
+### `document.domain` for Relaxing Same-Origin Policy:
+- Setting `document.domain` allows related subdomains to be treated as the same origin.
+- Enables cross-window communication between pages on the same second-level domain.
+- Caution: Security implications and limited to the same second-level domain.
+
+### Window Hierarchy:
+- Use `window.frames[index]` or `window.frames.iframeName` to access window objects within iframes.
+- `window.parent` refers to the parent window, and `window.top` refers to the top-level window.
+
+### `<iframe>` `sandbox` Attribute:
+- Restricts actions within an `<iframe>` to enhance security.
+- Default behavior is strict, treating the `<iframe>` as a different origin.
+- Can relax restrictions selectively with values like `allow-scripts`, `allow-forms`, etc.
+
+### `postMessage` Method for Cross-Origin Communication:
+- Sends messages between windows or iframes, overcoming Same-Origin Policy.
+- Specify data to send and the target origin to ensure security.
+- Receiving window or iframe must have an `onmessage` event handler.
+- Synchronous event triggering for immediate communication.
+
+The Clickjacking Attack
+
+**Clickjacking Overview:**
+- Clickjacking, also known as UI redress or user interface manipulation, is a security vulnerability.
+- Malicious actors trick users into unintended actions on a web page.
+- Techniques involve overlaying a legitimate website with a hidden frame containing malicious content.
+
+**How Clickjacking Works:**
+1. Preparation: Attackers create a web page or iframe with the target site.
+2. Tricking Users: Users are lured to the malicious page through social engineering.
+3. Overlaying Content: An invisible iframe covers the target website.
+4. Performing Unintended Actions: Users interact with the malicious page, unknowingly affecting the target site.
+
+**Defenses Against Clickjacking:**
+- Frame-busting scripts attempt to prevent framing but can be bypassed.
+- `X-Frame-Options` header specifies frame behavior (`DENY`, `SAMEORIGIN`, or `ALLOW-FROM`).
+- JavaScript-based protections like covering the page with a `<div>` have limited reliability.
+
+**`X-Frame-Options` Header:**
+- Controls whether a web page can be displayed within a frame or iframe.
+- Values: `DENY` (never), `SAMEORIGIN` (only same origin), `ALLOW-FROM domain` (specific domain).
+- Provides server-side control and is a reliable defense against clickjacking.
+
+**`SameSite` Cookie Attribute:**
+- Prevents certain types of clickjacking attacks involving cookies.
+- Values: `Strict` (first-party only), `Lax` (limited cross-origin), `None` (cross-origin with `Secure` attribute).
+- Useful for protecting authentication cookies but not effective for all scenarios.
+
+**Key Notes:**
+- Clickjacking is a deceptive technique to manipulate user interactions on web pages.
+- Frame-busting scripts are not foolproof and can be circumvented.
+- The `X-Frame-Options` header offers robust server-side control over framing.
+- The `SameSite` cookie attribute helps protect against some clickjacking attacks involving cookies but isn't a universal solution.
+ArrayBuffer and binary arrays
+
+
+
+**ArrayBuffer:**
+
+1. **Purpose:** ArrayBuffer is a fixed-length, contiguous memory storage for binary data.
+
+2. **Resizing:** ArrayBuffer size is fixed upon creation and cannot be resized.
+
+3. **Usage:** It serves as a foundation for storing raw binary data, which can be accessed and manipulated using TypedArrays or DataView.
+
+4. **Creation:** Create an ArrayBuffer with a specific byte length using `new ArrayBuffer(byteLength)`.
+
+5. **View Objects:** TypedArrays and DataView are used to interpret and work with the data stored in an ArrayBuffer.
+
+**TypedArrays:**
+
+1. **Purpose:** TypedArrays are views on ArrayBuffer data that provide interpretations as arrays of specific numeric types.
+
+2. **Common Types:** Common TypedArray types include Uint8Array, Uint16Array, Uint32Array, Float32Array, Float64Array, etc.
+
+3. **Creation:** TypedArrays can be created from an ArrayBuffer, an array or array-like object, or by specifying a length.
+
+4. **Properties:** They offer properties like `.buffer` (underlying ArrayBuffer) and `.byteLength` (byte length of the view).
+
+5. **Access & Manipulation:** TypedArrays allow reading and writing values like regular arrays, but with the constraint of specific data types.
+
+**DataView:**
+
+1. **Purpose:** DataView is a flexible tool for reading and writing binary data in an ArrayBuffer with control over data types and endianness.
+
+2. **Creation:** Create a DataView by specifying the ArrayBuffer, and optionally, byteOffset and byteLength.
+
+3. **Methods:** DataView provides methods for reading and writing data at specific byte offsets in various formats, allowing dynamic interpretation.
+
+4. **Flexibility:** It's suitable for scenarios with mixed-format data or when you need to interpret data dynamically.
+
+ArrayBuffer is a fixed-size memory container, TypedArrays provide structured views of this data with specific data types, and DataView offers dynamic interpretation of binary data within an ArrayBuffer, making them powerfu
+
+
+# Week 2
+
+**DAY 1**
+
+
+File Object
+
+A File object represents a file on the user's local file system. This object is typically created when a user interacts with an HTML input element of type "file" (e.g., `<input type="file">`) and selects one or more files for upload. The File object provides information about the selected file(s), such as their name, size, type, and last modification date. It also allows you to read the contents of the file.
+
+Here's a basic example of how to work with File objects in JavaScript:
+
+```html
+<!DOCTYPE html>
+<html>
+<head>
+    <title>File Object Example</title>
+</head>
+<body>
+    <input type="file" id="fileInput" onchange="handleFileSelect(event)">
+    <div id="fileInfo"></div>
+
+    <script>
+        function handleFileSelect(event) {
+            const fileInput = event.target;
+            const fileInfo = document.getElementById("fileInfo");
+
+            if (fileInput.files.length > 0) {
+                const file = fileInput.files[0];
+
+                fileInfo.innerHTML = `
+                    Name: ${file.name}<br>
+                    Size: ${file.size} bytes<br>
+                    Type: ${file.type}<br>
+                    Last Modified: ${file.lastModifiedDate.toLocaleString()}
+                `;
+
+                // You can also read the file's contents, but that requires FileReader API.
+                const reader = new FileReader();
+                reader.onload = function (e) {
+                    const fileContents = e.target.result;
+                    console.log("File contents:", fileContents);
+                };
+                reader.readAsText(file);
+            } else {
+                fileInfo.innerHTML = "No file selected.";
+            }
+        }
+    </script>
+</body>
+</html>
+```
+
+In this example:
+
+1. We have an `<input type="file">` element that allows the user to select a file.
+2. When the user selects a file, the `handleFileSelect` function is called, and it retrieves information about the selected file using the File object's properties.
+3. It also demonstrates how to read the contents of the file using the FileReader API.
+
+Keep in mind that working with files in JavaScript is subject to browser security restrictions, so you won't be able to read arbitrary files from the user's file system without their consent.
+File Reader
+
+FileReader object is used to read data from Blob and File objects asynchronously. It's commonly used for reading files from the user's local filesystem and handling the data using events.
+
+1. **Constructor**: You create a FileReader object using `new FileReader();` with no arguments.
+
+2. **Reading Methods**: FileReader provides several methods for reading data from Blob and File objects:
+   - `readAsArrayBuffer(blob)`: Reads the data in binary format and stores it in an ArrayBuffer.
+   - `readAsText(blob, [encoding])`: Reads the data as a text string with the given encoding (default is UTF-8).
+   - `readAsDataURL(blob)`: Reads the binary data and encodes it as a base64 data URL.
+   - `abort()`: Cancels the ongoing read operation.
+
+3. **Events**: FileReader uses events to track the progress of the read operation:
+   - `loadstart`: Fired when loading starts.
+   - `progress`: Occurs during reading, indicating the progress.
+   - `load`: Fired when the reading is complete without errors.
+   - `abort`: Fired if the `abort()` method is called.
+   - `error`: Fired when an error occurs during reading.
+   - `loadend`: Fired when reading is finished, whether successful or not.
+
+4. **Result and Error Handling**: After the reading is complete, you can access the result or error:
+   - `reader.result`: Contains the result if the reading was successful.
+   - `reader.error`: Contains the error if an error occurred during reading.
+
+Commonly used events are `load` (for successful reading) and `error` (for handling errors).
+
+Using FileReader, you can read files from user input, process them, and handle the data in various ways, such as displaying images in an `img` tag, parsing text files, or performing low-level binary operations on binary files. It's a versatile tool for working with file data in web applications.
+Fetch
+
+The `fetch()` method in JavaScript for making network requests to a server. Here's a summary of the key points:
+
+1. **AJAX (Asynchronous JavaScript And XML)**: AJAX is a technique that allows web applications to send and receive data from a server without having to reload the entire web page. While the name includes "XML," it's important to note that you can use various data formats, not just XML, for communication.
+
+2. **The `fetch()` Method**:
+   - `fetch(url, [options])` is a modern and versatile method for making network requests in JavaScript.
+   - `url` is the URL you want to access, specifying the server or resource you want to interact with.
+   - `options` is an optional object that can include parameters like the HTTP method, headers, and more.
+
+3. **Promise-Based**: The `fetch()` method returns a Promise. This means it works asynchronously, and you can use `.then()` and `.catch()` to handle the response when it becomes available.
+
+4. **Response Object**: The Promise resolves with a built-in `Response` object as soon as the server responds with headers. However, at this point, you don't have the response body yet. You can use this object to check HTTP status, headers, and other information related to the response.
+
+5. **Handling HTTP Status**:
+   - `ok`: A boolean property of the `Response` object that is `true` if the HTTP status code is in the range 200-299, indicating a successful response.
+   - `status`: This property of the `Response` object contains the HTTP status code, which can be used to check the specific response status (e.g., 404 for "Not Found," 500 for "Internal Server Error," etc.).
+
+6. **Error Handling**: Fetch errors can occur due to network problems or when the requested resource is not found. In most cases, even HTTP errors (e.g., 404 or 500) are not treated as JavaScript exceptions but are considered a normal flow of the process. You can use `.catch()` to handle fetch-related errors.
+
+The `fetch()` method is a powerful tool for making HTTP requests in JavaScript, and it's commonly used to interact with APIs and retrieve data from servers without requiring a page reload. It provides flexibility in handling responses and allows you to work with various data formats, not just XML.
+Post Request
+
+Making a POST request using the `fetch()` method and how to specify the HTTP method, request body, and headers. Here's a summary of the key points:
+
+1. **Making a POST Request**:
+   - To make a POST request or a request with a different HTTP method, you need to use the `fetch()` method with the appropriate options.
+   - The `method` option is used to specify the HTTP method, e.g., `POST`.
+
+2. **Request Body**:
+   - The `body` option allows you to specify the data that you want to include in the request body. It can be one of the following:
+     - A string: For example, to send JSON data, you can pass a JSON string as the request body.
+     - A `FormData` object: Used for submitting form data or multipart data.
+     - A `Blob` or `BufferSource`: Used for sending binary data.
+     - `URLSearchParams`: Used for submitting data in `x-www-form-urlencoded` encoding, although it's less commonly used.
+
+3. **Specifying Content-Type**:
+   - When sending JSON data as a string in the request body, the default `Content-Type` is set to `text/plain;charset=UTF-8`. To send JSON-encoded data with the correct `Content-Type`, you should use the `headers` option to set `Content-Type` to `application/json`.
+
+Here's an example of making a POST request with JSON data:
+
+```javascript
+const url = 'https://example.com/api/endpoint';
+const data = {
+  username: 'exampleuser',
+  password: 'examplepassword'
+};
+
+fetch(url, {
+  method: 'POST',
+  body: JSON.stringify(data),
+  headers: {
+    'Content-Type': 'application/json'
+  }
+})
+  .then(response => response.json())
+  .then(data => {
+    console.log('Response data:', data);
+  })
+  .catch(error => {
+    console.error('Error:', error);
+  });
+```
+
+In this example, we send a POST request to a specified URL with JSON data in the request body. We use the `JSON.stringify()` method to convert the JavaScript object to a JSON string, and we set the `Content-Type` header to `application/json` to specify the content type correctly.
+
+This is a common pattern for making POST requests to APIs when you need to send data to the server.
+Sending and Image
+
+Submitting binary data directly using Blob or BufferSource in a fetch request, as well as a summary of various Response properties and methods. Here's a summary of these points:
+
+1. **Submitting Binary Data with Blob**:
+   - You can submit binary data directly using a Blob or BufferSource.
+   - For example, if you have a canvas drawing that results in a Blob containing image data (e.g., in the "image/png" format), you can send this Blob to the server without manually setting the `Content-Type`. The Blob object already has a built-in type.
+
+2. **Submitting Data without Async/Await**:
+   - While the examples previously used `async/await`, you can also write fetch requests without them. A typical fetch request consists of two `await` calls, as shown in your code snippets.
+   - Alternatively, you can use promise-style chaining to handle the fetch request.
+
+3. **Response Properties**:
+   - The `Response` object provides various properties, including:
+     - `response.status`: Represents the HTTP status code of the response.
+     - `response.ok`: A boolean that is `true` if the status code is in the range 200-299, indicating a successful response.
+     - `response.headers`: A Map-like object containing HTTP headers.
+
+4. **Methods to Get Response Body**:
+   - To access the response body in different formats, you can use the following methods:
+     - `response.json()`: Parses the response as a JSON object.
+     - `response.text()`: Returns the response as plain text.
+     - `response.formData()`: Returns the response as a FormData object, suitable for form/multipart encoding.
+     - `response.blob()`: Returns the response as a Blob, which contains binary data with a specified type.
+     - `response.arrayBuffer()`: Returns the response as an ArrayBuffer, representing pure binary data.
+
+5. **Fetch Options**:
+   - Fetch options include:
+     - `method`: Specifies the HTTP method (e.g., GET, POST).
+     - `headers`: An object containing request headers (note that not all headers are allowed).
+     - `body`: Specifies the data to be sent in the request, which can be a string, FormData, BufferSource, Blob, or UrlSearchParams object
+
+**Day 2**
+# Sending a simple form
+In this HTML file, we have a simple form with a username and email input fields, and a submit button. When the form is submitted, it prevents the default form submission behaviour and instead uses JavaScript to create a FormData object from the form fields. It then sends a POST request to a specified server endpoint (replace "/your-server-endpoint" with the actual endpoint).
+
+On the server side, when it receives this POST request, it processes the form data and replies with "User saved."
+
+Make sure to replace "/your-server-endpoint" with the actual URL or route where you want to handle the form submission on your server.
+# FormData Methods
+The methods available for manipulating `FormData` objects in JavaScript. Here's a brief explanation of each of these methods:
+
+1. **`formData.append(name, value)`**: This method adds a new field with the given `name` and `value` to the `FormData` object. If a field with the same name already exists, it will append the new value to it, effectively allowing multiple values with the same name.
+
+2. **`formData.append(name, blob, fileName)`**: Similar to the previous method, this one allows you to add a field with the given `name` and a `Blob` (such as a file) as its value. The `fileName` parameter specifies the name to be associated with the file. It simulates adding a file input to the form.
+
+3. **`formData.delete(name)`**: This method removes the field with the specified `name` from the `FormData` object. If there are multiple fields with the same name, all of them will be removed.
+
+4. **`formData.get(name)`**: You can use this method to retrieve the value associated with a field having the specified `name` from the `FormData` object.
+
+5. **`formData.has(name)`**: This method checks whether a field with the given `name` exists in the `FormData`. It returns `true` if a field with that name is present and `false` otherwise.
+
+6. **`formData.set(name, value)`**: This method is similar to `append`, but it first removes all fields with the specified `name` and then appends the new field. It ensures that there is only one field with that name.
+
+7. **`for..of` loop for Iterating**: You can use a `for..of` loop to iterate over the fields of the `FormData` object. Each iteration returns a `[name, value]` pair, allowing you to process the fields programmatically.
+
+Here's an example of how you might use these methods to manipulate a `FormData` object:
+
+```javascript
+let formData = new FormData();
+
+formData.append('name', 'John');
+formData.append('email', 'john@example.com');
+formData.append('avatar', fileInput.files[0]);
+
+console.log(formData.get('name')); // Output: "John"
+
+formData.delete('email');
+
+console.log(formData.has('email')); // Output: false
+
+formData.set('name', 'Jane');
+
+for (let pair of formData) {
+    console.log(pair[0], pair[1]);
+}
+```
+
+In this example, we add fields, delete a field, set a new value for a field, and then iterate over the `FormData` object's fields using a `for..of` loop to demonstrate how these methods work.
+# Sending a form with a file
+HTML forms with file uploads using the "multipart/form-data" encoding:
+
+1. **Form Encoding**: When you want to allow users to upload files via an HTML form, you use the `enctype="multipart/form-data"` attribute in the `<form>` tag. This encoding is essential for sending files.
+
+2. **File Input Field**: To provide a file upload field, you use the `<input type="file">` element in your form. Users can select files from their devices using this input field.
+
+3. **Form Submission**: When the user submits the form, the selected file(s) are sent to the server as part of a multipart request.
+
+4. **Server Handling**: On the server-side, you need to use a programming language and framework to handle the uploaded file. The server receives the multipart request and parses it to access the file and any other form data.
+
+5. **Validation**: It's crucial to validate the uploaded file to ensure it meets your application's requirements. Check for file type, size limits, and any other criteria.
+
+6. **File Processing**: Depending on your application's needs, you can save the uploaded file to a directory on your server, process it in some way, or store it in a database.
+
+7. **Response**: After handling the file upload, the server can respond to the client with a success message or any relevant information about the upload process.
+
+Remember that the specific code for handling file uploads will vary depending on the programming language and framework you're using on the server side.
+
+# Sending a form with a blob data
+- The code demonstrates how to submit an image (represented as a Blob) along with other fields using FormData in a web form.
+
+- FormData is used to construct the form data to be sent in the request.
+
+- You can append the image Blob to FormData using the `formData.append` method, specifying the field name ("image") and file name ("image.png").
+
+- Additional fields and their values can also be added to the FormData object using the `formData.append` method.
+
+- The fetch function is used to send the FormData to a specified endpoint via a POST request.
+
+- You can handle the server's response, including any server-side actions or displaying a success message to the user.
+
+- This approach allows you to conveniently include images as part of a form submission, simulating a user selecting a file in a regular HTML form.
+
+- It is compatible with server-side handling of multipart-encoded forms, making it suitable for practical use cases.
+# Fetch: Download Progress
+Tracking download progress using the `fetch` API with a stream reader:
+
+1. **Fetch and Stream Reader**: Instead of using response methods like `response.json()`, obtain a stream reader from `response.body.getReader()` to read the response data chunk by chunk.
+
+2. **Content-Length Header**: Check the `Content-Length` header in the response to determine the total size of the response in bytes. This header provides information about the response length.
+
+3. **Reading Chunks**: Use `await reader.read()` in a loop until the `done` property of the result becomes `true`. Each call to `reader.read()` provides a chunk of data as a `Uint8Array`.
+
+4. **Gathering Chunks**: Collect the response chunks in an array to combine them later. It's crucial to store these chunks because once the response is fully consumed, you can't re-read it using other methods.
+
+5. **Combining Chunks**: Create a new `Uint8Array` with the combined length of all chunks. Use the `.set(chunk, position)` method to copy each chunk into the resulting array.
+
+6. **Converting to String**: If needed, interpret the byte array as a string using the built-in `TextDecoder` to make it human-readable. You can then parse it as JSON or use it as required.
+
+7. **Binary Content**: For binary content, you can simplify the process by creating a Blob from all the chunks using `new Blob(chunks)`.
+
+8. **Progress Tracking**: You can track the download progress by keeping a counter and adding the length of each chunk to it as they are received.
+
+9. **Note on Upload Progress**: The `fetch` API does not provide built-in support for tracking upload progress (sending data to the server). For tracking upload progress, you typically use the older `XMLHttpRequest` API.
+
+In summary, this approach allows you to monitor the progress of downloading data from the server in chunks, providing more control and flexibility over the process.
+
+# Fetch: Abort
+The `AbortController` to cancel fetch requests and other asynchronous tasks in JavaScript:
+
+1. **Create an AbortController**:
+   - Start by creating an instance of the `AbortController` with `let controller = new AbortController();`. This object will be used to control the cancellation of asynchronous tasks.
+
+2. **Pass the Signal to Fetch**:
+   - To enable the cancellation of a fetch request, include the `signal` property of the `AbortController` in the `fetch` options:
+     ```javascript
+     fetch(url, {
+       signal: controller.signal
+     });
+     ```
+
+3. **Abort the Request**:
+   - When you need to cancel the fetch request or other asynchronous tasks, call `controller.abort();`.
+
+4. **Handle Abort Error**:
+   - When a fetch request is canceled, it rejects with an `AbortError`. Handle this error in your code to ensure proper error handling:
+     ```javascript
+     fetch(url, {
+       signal: controller.signal
+     })
+       .then(response => {
+         // Handle the response if not aborted
+       })
+       .catch(error => {
+         if (error.name === 'AbortError') {
+           // Handle the cancellation here
+         } else {
+           // Handle other errors
+         }
+       });
+     ```
+
+5. **Scalability**:
+   - You can use a single `AbortController` to cancel multiple fetch requests concurrently, which is useful for managing multiple ongoing requests efficiently.
+
+6. **Non-Fetch Use Cases**:
+   - The `AbortController` is versatile and can be applied to cancel other asynchronous tasks or jobs, not limited to fetch requests. This makes it a valuable tool for managing various asynchronous operations.
+
+**Day 3**
+**Cross-Origin Resource Sharing (CORS) and its significance in web security:**
+
+1. **CORS Basics**:
+- CORS stands for Cross-Origin Resource Sharing.
+- It's a security feature that controls how web pages hosted on one domain can request and interact with resources on another domain.
+
+2. **Historical Context**:
+- Early web development had strict same-origin restrictions, preventing scripts from one site from accessing data on another site.
+- JavaScript was initially limited in its ability to perform network requests.
+
+3. **Introduction of CORS**:
+- CORS was introduced to address the need for cross-domain requests while maintaining security.
+- It allows servers to specify which domains are permitted to access their resources.
+
+4. **CORS Mechanics**:
+- When a cross-origin request is made, the browser sends an "Origin" header indicating the requesting domain.
+- The server checks this header and, if configured, sends CORS headers specifying which origins are allowed.
+- If the server allows the request, the browser proceeds; otherwise, it blocks the request.
+
+5. **Security Benefits**:
+- CORS prevents unauthorized cross-origin requests, enhancing web security.
+- It provides fine-grained control over which domains can access resources, reducing data breach risks.
+- CORS facilitates secure, controlled cross-origin communication for web applications.
+
+6. **Handling CORS Issues**:
+- To work with APIs and resources from different domains, ensure the server you're requesting data from has the appropriate CORS settings.
+- Use server-side proxies or techniques like JSONP for cases where CORS is not feasible.
+- These approaches balance security with the need for cross-origin communication in modern web development.
+
+
+# Cross-Origin Resource Sharing (CORS) and its significance in web security:
+
+1. **CORS Basics**:
+- CORS stands for Cross-Origin Resource Sharing.
+- It's a security feature that controls how web pages hosted on one domain can request and interact with resources on another domain.
+
+2. **Historical Context**:
+- Early web development had strict same-origin restrictions, preventing scripts from one site from accessing data on another site.
+- JavaScript was initially limited in its ability to perform network requests.
+
+3. **Introduction of CORS**:
+- CORS was introduced to address the need for cross-domain requests while maintaining security.
+- It allows servers to specify which domains are permitted to access their resources.
+
+4. **CORS Mechanics**:
+- When a cross-origin request is made, the browser sends an "Origin" header indicating the requesting domain.
+- The server checks this header and, if configured, sends CORS headers specifying which origins are allowed.
+- If the server allows the request, the browser proceeds; otherwise, it blocks the request.
+
+5. **Security Benefits**:
+- CORS prevents unauthorized cross-origin requests, enhancing web security.
+- It provides fine-grained control over which domains can access resources, reducing data breach risks.
+- CORS facilitates secure, controlled cross-origin communication for web applications.
+
+6. **Handling CORS Issues**:
+- To work with APIs and resources from different domains, ensure the server you're requesting data from has the appropriate CORS settings.
+- Use server-side proxies or techniques like JSONP for cases where CORS is not feasible.
+- These approaches balance security with the need for cross-origin communication in modern web development
+  # Method of using forms and iframes for server communication:
+
+**Old Method: Forms and Iframes for Server Communication**
+
+1. **Form Submissions**:
+- HTML forms allowed for collecting user input and sending it to a specified URL when the form was submitted.
+- Forms could use the "GET" or "POST" methods to make requests to other servers.
+
+2. **Using Iframes**:
+- To submit a form without navigating away from the current page, developers sometimes placed the form within an `<iframe>`.
+- This enabled background form submissions without affecting the main page's content.
+
+3. **Limitations**:
+- Reading the response from the server in the `<iframe>` was challenging due to the same-origin policy, preventing JavaScript on the main page from accessing the `<iframe>` content if it originated from a different domain.
+
+4. **Complex Workarounds**:
+- Complex scripts were sometimes used on both the `<iframe>` and the main page to enable communication and data retrieval from the server's response.
+- These workarounds were cumbersome and less reliable compared to modern methods.
+
+5. **Evolution to Modern Approaches**:
+- With the introduction of modern web APIs like Fetch and CORS (Cross-Origin Resource Sharing), web developers have more robust and secure ways to make cross-origin requests and handle responses.
+- Modern methods provide better control and security over data exchange between domains, making them the preferred choice for server communication in web development.
+
+# Cross-origin requests work with the `Origin` and `Access-Control-Allow-Origin` headers:
+
+**Cross-Origin Requests and Headers**
+
+1. **Origin Header**:
+- The browser automatically includes an `Origin` header in cross-origin requests.
+- The `Origin` header contains the origin (domain, protocol, and port) of the requesting page but does not include the path.
+
+2. **Server Inspection**:
+- The server can inspect the `Origin` header to identify the origin of the requesting page.
+
+3. **Access-Control-Allow-Origin Header**:
+- To allow cross-origin requests, the server can include the `Access-Control-Allow-Origin` header in its response.
+- This header specifies the permitted origin(s) that are allowed to access the resource.
+- It can contain a specific origin (e.g., `https://javascript.info`) or a wildcard `*` to allow any origin.
+
+4. **Browser Mediation**:
+- The browser acts as a trusted mediator during cross-origin requests.
+- It ensures that the correct `Origin` is sent with the request.
+- It checks for the presence of the `Access-Control-Allow-Origin` header in the server's response.
+- If the header is present and matches the requesting origin, JavaScript is granted access to the response data; otherwise, an error is generated.
+
+5. **Example of Permissive Server Response**:
+- A server can respond with a permissive `Access-Control-Allow-Origin` header to allow access from a specific origin.
+- For example:
+```
+200 OK
+Content-Type: text/html; charset=UTF-8
+Access-Control-Allow-Origin: https://javascript.info
+```
+**Handling Non-Simple Cross-Origin Requests with Preflight**
+
+1. **Non-Simple Requests**:
+- Non-simple cross-origin requests can use HTTP methods other than GET or POST, include non-simple headers, or have a content type that isn't one of the predefined types.
+
+2. **Preflight Request (Step 1)**:
+- Before sending the main request, the browser automatically sends a preflight request (OPTIONS request) to the server to ask for permission.
+- The preflight request includes headers like:
+- `Access-Control-Request-Method`: Specifies the requested method (e.g., PATCH).
+- `Access-Control-Request-Headers`: Provides a comma-separated list of non-simple headers.
+- The preflight request's purpose is to check if the server allows the requested cross-origin operation.
+
+3. **Preflight Response (Step 2)**:
+- The server responds to the preflight request with status 200 and specific headers:
+- `Access-Control-Allow-Methods`: Lists the allowed HTTP methods (e.g., PATCH).
+- `Access-Control-Allow-Headers`: Specifies the allowed headers (e.g., Content-Type, API-Key).
+- `Access-Control-Max-Age`: Optionally, sets a time period (in seconds) for caching permissions, reducing the need for preflight requests in subsequent interactions.
+
+4. **Actual Request (Step 3)**:
+- If the preflight is successful, the browser proceeds to send the actual request, which is similar to how simple requests are made.
+- The actual request includes the `Origin` header to indicate its cross-origin nature.
+
+5. **Actual Response (Step 4)**:
+- The server responds to the actual request.
+- It must include the `Access-Control-Allow-Origin` header, even if the preflight was successful.
+- With the appropriate headers in place, JavaScript can access the full response.
+
+6. **Preflight and JavaScript**:
+- The preflight request happens automatically "behind the scenes," and JavaScript is not directly involved in this process.
+**Fetcher Options**
+
+1. **referrer, referrerPolicy**:
+- The `referrer` option allows you to set the HTTP Referer header.
+- It can be set to any Referer within the current origin or disabled by using an empty string.
+- The `referrerPolicy` option sets general rules for the Referer header, with various values such as "no-referrer," "origin," and others.
+
+2. **mode**:
+- The `mode` option determines whether cross-origin requests are allowed.
+- Possible values include "cors" (default, allows cross-origin requests), "same-origin" (forbids cross-origin requests), and "no-cors" (allows only simple cross-origin requests).
+
+3. **credentials**:
+- The `credentials` option specifies whether fetch should send cookies and HTTP-Authorization headers with the request.
+- Values are "same-origin" (default, don't send for cross-origin requests), "include" (always send, requires server permission), and "omit" (never send, even for same-origin requests).
+
+4. **cache**:
+- The `cache` option allows you to control HTTP caching behavior.
+- Values include "default" (standard HTTP caching rules), "no-store" (ignore HTTP cache), "reload" (bypass HTTP cache), "no-cache" (conditional request with caching), "force-cache" (use stale cache), and "only-if-cached" (use cache or error if not available).
+
+5. **redirect**:
+- The `redirect` option determines how fetch handles HTTP redirects.
+- Values are "follow" (default, follow redirects), "error" (error on redirects), and "manual" (don't follow, but provide new URL).
+
+6. **integrity**:
+- The `integrity` option allows you to verify that the response matches a known-ahead checksum using hash functions like SHA-256.
+- Fetch will calculate the checksum and compare it to the provided string, triggering an error if they don't match.
+
+7. **keepalive**:
+- The `keepalive` option indicates that the request may outlive the page.
+- It is useful for background requests that need to be completed even after the page is unloaded.
+- The limit for the request body in keepalive requests is typically 64KB.
+
+These fetch options provide fine-grained control over how fetch requests are made, how data is handled, and how various aspects of the HTTP request and response are managed. Understanding and utilizing these options can help developers create efficient and secure web applications.
+
+**Day 4**
+
+**Regular Expressions in JavaScript**
+
+Regular expressions (regex or regexp) are powerful tools for pattern matching and text manipulation in JavaScript. They consist of a pattern and optional flags and can be created using two syntaxes: the long syntax with the `RegExp` constructor or the short syntax with slashes (`/`). Common flags include "g" (global), "i" (case-insensitive), and "m" (multiline). Regex is widely used for tasks like form validation, data extraction, and string manipulation.
+
+## Using the `search` Method
+
+The `search` method is used to search for a specified pattern (regex) within a string. It returns the position of the first match found or `-1` if no match is found. Regex can be passed directly in slashes or created dynamically using the `RegExp` constructor.
+
+## Flags for Regex
+
+1. **`i` (Case-Insensitive):** Matches regardless of letter case.
+2. **`g` (Global):** Matches all occurrences in the input string.
+3. **`m` (Multiline):** Treats the input as a multi-line string.
+4. **`s` (Dotall):** Allows `.` to match newline characters.
+5. **`u` (Unicode):** Enables full Unicode support.
+6. **`y` (Sticky):** Performs a search at a specific position within the string.
+
+## Methods for Searching
+
+1. **`str.search(reg)`:** Finds the position of the first match.
+2. **`str.match(reg)`:** Returns the first match (with and without `g` flag).
+3. **`str.matchAll(reg)`:** Returns an iterable with all matches.
+4. **`regexp.exec(str)`:** Searches for the next match with `g` flag.
+5. **`regexp.test(str)`:** Checks for a match with `g` flag.
+
+## Methods for Replacing
+
+1. **`str.replace(reg, replacement)`:** Replaces matches with specified text or function.
+
+## Method for Splitting
+
+1. **`str.split(separator)`:** Splits the string into an array based on a separator.
+
+## Character Classes
+
+1. **Character Classes:** Used to match symbols from a specified set.
+   - `\d`: Matches digits (0-9).
+   - `\s`: Matches whitespace characters.
+   - `\w`: Matches word characters (letters, digits, underscores).
+
+2. **Inverse Character Classes:** Uppercase versions match characters not in the class (e.g., `\D`, `\S`, `\W`, `\B`).
+
+## Word Boundaries (`\b`)
+
+- `\b` matches word boundaries and is useful for finding standalone words in text.
+
+## Escaping Special Characters
+
+- Certain characters like `[ \ ^ $ . | ? * + ( )` have special meanings in regex. Escape them with a backslash to match them literally.
+
+## Dot (`.`) and `s` Flag
+
+- The dot (`.`) matches any character except a newline by default.
+- The `s` flag makes the dot (`.`) match any character, including newlines.
+
+# Week 3
+
+**Introduction to Node.js:**
+- Node.js is an open-source, server-side runtime environment built on Chrome's V8 JavaScript engine.
+- It allows you to run JavaScript code on the server, enabling non-blocking, event-driven I/O operations.
+- Node.js is commonly used for building scalable and high-performance web applications.
+- It uses an event loop and callback functions for asynchronous programming.
+- The npm (Node Package Manager) is used to manage and install packages and libraries in Node.js applications.
+
+**Node.js Libraries:**
+- Node.js has a rich ecosystem of libraries and modules available through npm.
+- These libraries can be used to extend Node.js's functionality, from web development to networking and more.
+- Some popular Node.js libraries include Express.js for building web applications, Socket.io for real-time communication, and Mongoose for working with MongoDB.
+- You can install and manage libraries using npm, and you can require them in your Node.js code to use their functionality.
+
+**Client-Side Game Development:**
+- Client-side game development refers to creating and running games directly in a web browser.
+- It often involves using HTML5, CSS, and JavaScript to build interactive and visually appealing games.
+- Game development libraries and frameworks like Phaser, Three.js, and PixiJS are commonly used to simplify game creation.
+- Client-side games are accessible through a web URL, making them easy to distribute and play without the need for installation.
+
+**Assigning a Sprite:**
+- In game development, a "sprite" typically refers to a 2D graphical object or character that can be moved, animated, and interacted with in the game world.
+- To assign a sprite in a game, you need to create or load an image or graphic that represents the sprite's appearance.
+- The sprite is typically defined in code with its properties, such as its position, size, and behavior.
+- You can use game development libraries like Phaser or Three.js to easily assign and manipulate sprites in your games.
+- Sprites can have various attributes, such as collision detection, animations, and event handling, to make them interactive and integral to the game experience.
+
+# Week 4
+  
+**REACT NATIVE**
+React Native is an open-source framework for building mobile applications using JavaScript and React. It was developed by Facebook and is widely used for creating cross-platform mobile apps. The key features of React Native include:
+
+1. **Cross-Platform Development:** React Native allows you to write code once and use it to create mobile applications for multiple platforms, such as iOS and Android. This can significantly reduce development time and effort.
+
+2. **Native User Interface:** React Native provides a way to build a user interface using native components. This means your app doesn't look or feel like a web app; it behaves like a native mobile app.
+
+3. **JavaScript and React:** You can use JavaScript, along with the React library, to build your mobile app. If you're familiar with web development, this can be a smooth transition, as you can leverage your existing JavaScript skills.
+
+4. **Hot Reloading:** React Native supports "hot reloading," which allows you to see the results of your code changes immediately on the screen without recompiling the entire app. This speeds up the development process.
+
+5. **Access to Native Features:** React Native provides a way to access native modules and components. If you need to use a specific feature or functionality that's unique to a particular platform, you can do so through native modules.
+
+6. **Large Ecosystem:** React Native has a vast ecosystem of libraries and packages available through npm (Node Package Manager), making it easy to add various functionalities to your app.
+
+7. **Community and Support:** React Native has a strong and active community of developers and regular updates, which means you can find help, resources, and solutions to common issues easily.
+
+8. **Cost-Efficient Development:** By allowing developers to build for both iOS and Android using a single codebase, React Native can be a cost-effective approach for companies and developers.
+
+React Native is an excellent choice for building mobile applications, especially if you need to support both major mobile platforms. It's been used by many well-known companies and has proven its effectiveness in developing high-quality, performant, and efficient mobile apps.
+
+**Notes of the steps outlined for setting up a real-time chat application with sentiment analysis using Next.js, Pusher, Sentiment, and React:**
+
+**Activity 1 - Installing Dependencies:**
+
+1. Create a new directory for your application.
+
+2. Initialize a Node.js package and install dependencies, including React, Next.js, Pusher, Sentiment, Express, Body-parser, CORS, dotenv, and Axios.
+
+3. Use the "create-next-app" command to create a Next.js application named "realtime-chat-app."
+
+4. Set up environment variables by creating a `.env` file with Pusher application credentials.
+
+5. Create a "next.config.js" file to configure Webpack for handling environment variables.
+
+**Activity 2 - Setting up the Server:**
+
+1. Create a "server.js" file in the root directory.
+
+2. Add code to set up the server, import necessary libraries (Pusher and Sentiment), and configure them with environmental variables.
+
+3. Ensure correct configuration of Pusher credentials in the `.env` file.
+
+4. Configure CORS for handling cross-origin requests.
+
+5. Run the server with `node server.js`.
+
+**Activity 3 - Modifying npm Scripts:**
+
+1. Edit the `package.json` file to modify the scripts section with the following changes:
+
+   - "dev": Run the server in development mode with `node server.js`.
+   - "build": Used for building your Next.js application for production.
+   - "start": Set the `NODE_ENV` variable to "production" and start the server for production.
+
+These summary notes provide a concise overview of the key steps to set up your real-time chat application with sentiment analysis using the mentioned technologies. If you need further details or have specific questions about any step, please feel free to ask.
+
+# Creating a chat application using React, Chatkit, and SendGrid:
+
+**Chat Application Setup with React, Chatkit, and SendGrid**
+
+**Requirements:**
+- Node.js and npm installed.
+- Familiarity with React and Chatkit is beneficial.
+
+**Instructions:**
+
+1. **Chatkit Setup:**
+   - Sign up for Chatkit.
+   - Create a Chatkit instance named "testing-chat-app."
+   - Find the Instance Locator and Secret Key in the dashboard.
+   - Activate the Test Token Provider for the instance.
+   - Create a support staff user with the identifier "support."
+
+2. **SendGrid Setup:**
+   - Register for a SendGrid account.
+   - Go to Settings > API Keys and create a new API key with Full Access permissions.
+
+3. **Server Setup:**
+   - Set up a new project directory.
+   - Install required dependencies using `npm install`.
+   - Create a `.env` file to store your credentials securely.
+   - Develop a Node.js server (`server.js`) to handle user creation, chat transcripts, and email sending, using Express, dotenv, Chatkit, date-fns, and SendGrid's API.
+
+4. **React Frontend Setup:**
+   - Install Create React App globally and create a new React application.
+   - Install additional packages like Chatkit Client, react-toastify, axios, and random-words.
+   - Design a user interface for interaction in `App.js`.
+   - Create a `methods.js` file to manage user input, joining the chat, sending messages, ending the chat, and transmitting chat transcripts.
+   - Replace placeholders in the code with your specific Chatkit instance locator and token provider endpoint.
+
+**Functionality:**
+- Users can enter the chat by specifying their username.
+- Upon connection, a chat room is established for interaction.
+- Support staff are added to the room.
+- Users and support agents can exchange messages.
+- When the chat concludes, users are asked for an email address to receive the chat transcript.
+- The transcript is delivered via SendGrid's API to the provided email address.
+
+**Notes:**
+- This guide assumes some prior experience with Chatkit and React.
+- Make sure to replace placeholders with actual API keys and URLs.
+- Test and verify the code for proper functionality.
+
+This project empowers users to engage in chat interactions with support staff and obtain chat transcripts via email, enhancing customer support capabilities.
+
+# The code in `server.js` provides the server-side functionality for storing and handling chat messages, ensuring real-time updates using Pusher. To complete the chat application, you need to integrate this server-side logic with your React Native frontend and render the chat messages on the user interface. Here are the steps to achieve this:
+
+1. **Create a Message Component:**
+   - In your React Native project, create a `Message` component that will represent individual chat messages. This component should render the sender's name, message content, and a timestamp.
+
+2. **Display Chat Messages:**
+   - In your `Chat` component, you'll need to render the chat messages. Create a component state or use a state management solution (e.g., Redux) to store and manage the list of chat messages. When new messages arrive through Pusher, update the state with the new message.
+
+3. **Map Chat History:**
+   - Use the `map` function to iterate through the list of chat messages in your component's state and render each message using the `Message` component. This will create a visual representation of the chat history.
+
+4. **Real-Time Updates:**
+   - When new messages arrive in real-time via Pusher, add them to the list of chat messages in your component's state. This will automatically trigger a re-render, displaying the new message in the chat interface.
+
+5. **User Input and Sending Messages:**
+   - Ensure that the chat input area in your `Chat` component allows users to type and send messages. When the user sends a message, construct a chat message object with the user's information, message content, and timestamp. Send this message to the server via an HTTP POST request to the `/message` route.
+
+6. **Message Styling:**
+   - Apply styles to the `Message` component and the chat interface to make it visually appealing. You can use CSS styles or popular React Native styling libraries to achieve this.
+
+7. **Additional Features:**
+   - Implement any additional features you want, such as the ability to send images or other types of media, message formatting, and user avatars.
+
+8. **Testing:**
+   - Thoroughly test the chat application to ensure that chat messages are displayed correctly, new messages arrive in real-time, and users can send messages without issues.
+
+By following these steps and integrating the server-side logic with your React Native frontend, you can create a fully functional chat application that allows users to send, receive, and view chat messages in real-time. Don't forget to handle user authentication, error handling, and any other essential features as needed for your application. 
+
+**Chat App Development and Reflections:**
+
+- Building a chat app is an enjoyable experience for developers due to its real-time communication nature and versatility for various purposes.
+
+- Challenges in chat app development include managing real-time updates, message history, security, and creating a user-friendly interface.
+
+- Solutions include using WebSockets for real-time updates, databases for message storage, encryption for security, and React Native for cross-platform UI.
+
+**React Native for Cross-Platform Development:**
+
+- React Native is useful for developing cross-platform mobile applications.
+
+- Benefits include code reusability, native-like performance, a large and active community, and hot reloading for efficient debugging.
+
+- The choice to use React Native in the future depends on project-specific needs, target audience, performance requirements, and developer preferences.
+
+- While React Native is a popular choice, native development may be more suitable for specific projects.
+
+In summary, building chat apps can be rewarding but comes with challenges. React Native is valuable for cross-platform mobile development, but its use should be tailored to project requirements and developer expertise. Adaptability is key in choosing the right technology stack for each project.
