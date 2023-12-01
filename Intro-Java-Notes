@@ -1,0 +1,533 @@
+# Intro-JAVA-Notes
+# WEEK 1
+**Day 1**
+
+
+### Java Features:
+- **Platform Independence:** Java's bytecode and JVM allow code to run on various platforms without recompilation.
+- **Object-Oriented:** Encourages modular code through classes, objects, inheritance, and polymorphism.
+- **Simplicity:** Clear syntax akin to C++, making it user-friendly and easy to read/write.
+- **Robustness:** Memory management, strong type checking, and exception handling enhance reliability.
+- **Security:** Bytecode verifier, Security Manager, and sandboxing ensure safer execution.
+- **Multithreading:** Allows multiple threads for improved performance in multi-core systems.
+
+### Java Program Structure:
+- **Package Declaration:** Defines the package where the Java file resides, aiding in organization.
+- **Import Statements:** Allows using classes from other packages in the current class.
+- **Comments:** Single-line (`//`) or multiline (`/* ... */`) comments for documentation and explanations.
+- **Class Definition:** `public class MyClass { }` defines the structure and behavior of a class.
+- **Main Method:** `public static void main(String[] args) { }` is the starting point of execution.
+- **Methods/Behaviours:** Contain sets of instructions for specific tasks within a class.
+- **Attributes (Variables):** Store data values used within methods or classes.
+
+### Typical Java Program Example:
+- **Package Declaration:** `package com.example.packageName;`
+- **Import Statements:** `import java.util.*;`
+- **Comments:** Single-line or multiline comments for documentation.
+- **Class Definition:** `public class MyClass { }`
+- **Main Method:** `public static void main(String[] args) { }`
+- **Methods/Behaviours:** Contain sets of instructions for specific tasks.
+- **Attributes (Variables):** Store data values used within methods or classes.
+
+### Example Program: `Dog` Class
+```java
+public class Dog {
+    /* 
+    This class defines a Dog with methods to bark and the main method.
+    */
+
+    public void bark() {
+        System.out.println("Woof! Woof!");
+    }
+
+    public static void main(String[] args) {
+        Dog myDog = new Dog();
+        myDog.bark();
+    }
+}
+```
+
+This class follows the typical Java structure, defining a `Dog` class with a `bark()` method and a `main()` method as the entry point. It demonstrates encapsulation of behavior within methods and the usage of classes in Java.
+
+**Day 2**
+
+
+1. **Java Variables and Data Types**:
+   - Variables are named memory locations storing data.
+   - Java has primitive data types (int, float, boolean) and non-primitive types (objects, arrays).
+   - Variables must be declared before use and follow specific naming rules.
+
+2. **Classes and Objects**:
+   - A class in Java is a blueprint defining the attributes (variables) and behaviors (methods) of objects.
+   - Objects are instances of classes, representing real-world entities with states and behaviors.
+
+3. **Creating Classes and Objects**:
+   - A class defines the structure for creating objects.
+   - Objects are created using the `new` keyword followed by the class name and can be initialized using constructors.
+
+4. **Java Operators**:
+   - Arithmetic, relational, bitwise, logical, and assignment operators perform specific actions on variables or values.
+   - They are used for calculations, comparisons, and logical operations in Java programs.
+
+5. **Coding Example**:
+  
+```java
+public class Employee {
+    // Instance variables
+    private String name;
+    private int age;
+    private String designation;
+    private double salary;
+
+    // Constructor with a single parameter for the name
+    public Employee(String empName) {
+        this.name = empName;
+        // Default values for other variables
+        this.age = 0;
+        this.designation = "Not specified";
+        this.salary = 0.0;
+    }
+
+    // Method to print employee details
+    public void printEmployee() {
+        System.out.println("Employee Details:");
+        System.out.println("Name: " + name);
+        System.out.println("Age: " + age);
+        System.out.println("Designation: " + designation);
+        System.out.println("Salary: $" + salary);
+        System.out.println();
+    }
+
+    public static void main(String[] args) {
+        // Creating Employee objects and printing their details
+        Employee emp1 = new Employee("John");
+        Employee emp2 = new Employee("Alice");
+        Employee emp3 = new Employee("Bob");
+
+        // Printing details using printEmployee() method
+        emp1.printEmployee();
+        emp2.printEmployee();
+        emp3.printEmployee();
+    }
+}
+```
+
+This Java code defines an `Employee` class with instance variables (`name`, `age`, `designation`, and `salary`), a constructor that takes the `name` as a parameter, a `printEmployee()` method to display the details of an employee, and a `main` method to demonstrate the creation of three employee objects and printing their details.
+
+Understanding these concepts lays a strong foundation for Java programming, allowing you to create structured, efficient, and functional code. If you have further questions or need more details, feel free to ask!
+
+**Day 3**
+
+
+1. **Object-Oriented Programming (OOP) Core Features**:
+   - Encapsulation: Bundling data and methods into a single unit, using access modifiers (`private`, `public`) in Java to control visibility.
+   - Abstraction: Showing essential features while hiding unnecessary details, often achieved through abstract classes and interfaces in Java.
+   - Inheritance: Acquiring properties (methods and fields) from another class, allowing code reuse and hierarchical organization.
+   - Polymorphism: Objects taking multiple forms, implemented through method overloading and overriding in Java.
+
+2. **Other Features of OOP**:
+   - Coupling: Degree of dependency between classes, managed using visibility modifiers (`private`, `protected`, `public`) and interfaces in Java to achieve weaker coupling.
+   - Cohesion: Measure of how well a component performs a single, well-defined task, reflecting the quality of methods or components in a system.
+   - Association: Representing relationships between objects, categorized as one-to-one, one-to-many, many-to-one, and many-to-many.
+   - Aggregation: One-way (HAS-A) relationship between classes, depicting a weaker form of association where one class depends on another.
+   - Composition: Mutual dependency between classes, showing a stronger form of association where both classes are interdependent and cannot exist without each other.
+
+
+3. **Code Examples**
+3.1. **Object-Oriented Programming (OOP) Core Features Example**:
+
+```java
+class PurchaseItem {
+    private String name;
+    private double unitPrice;
+
+    public PurchaseItem(String name, double unitPrice) {
+        this.name = name;
+        this.unitPrice = unitPrice;
+    }
+
+    public PurchaseItem() {
+        this.name = "no item";
+        this.unitPrice = 0;
+    }
+
+    public double getPrice() {
+        return unitPrice;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public double getUnitPrice() {
+        return unitPrice;
+    }
+}
+
+class WeighedItem extends PurchaseItem {
+    private double weight;
+
+    public WeighedItem(String name, double unitPrice, double weight) {
+        super(name, unitPrice);
+        this.weight = weight;
+    }
+
+    @Override
+    public double getPrice() {
+        return super.getPrice() * weight;
+    }
+
+    public double getWeight() {
+        return weight;
+    }
+}
+
+class CountedItem extends PurchaseItem {
+    private int quantity;
+
+    public CountedItem(String name, double unitPrice, int quantity) {
+        super(name, unitPrice);
+        this.quantity = quantity;
+    }
+
+    @Override
+    public double getPrice() {
+        return super.getPrice() * quantity;
+    }
+
+    public int getQuantity() {
+        return quantity;
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        WeighedItem banana = new WeighedItem("Banana", 3.00, 1.37);
+        System.out.println(banana.getName() + " @ " + banana.getUnitPrice() + " " + banana.getWeight() + " Kg R" + banana.getPrice());
+
+        CountedItem pens = new CountedItem("Pens", 4.5, 10);
+        System.out.println(pens.getName() + " @ " + pens.getUnitPrice() + " " + pens.getQuantity() + " units R" + pens.getPrice());
+    }
+}
+```
+
+Now, with the added getters (`getName()`, `getUnitPrice()`, `getWeight()`, `getQuantity()`) in the respective classes, you should be able to access the properties of `WeighedItem` and `CountedItem` instances properly within the `Main` class.
+
+3.2. **Java Classes with Association and Aggregation**
+
+
+Implementation in Java using association and aggregation to represent the relationships between the `Company`, `Store`, and `Product` classes:
+
+```java
+class Product {
+    private String name;
+    private int quantity;
+    private double price;
+
+    public Product(String name, int quantity, double price) {
+        this.name = name;
+        this.quantity = quantity;
+        this.price = price;
+    }
+
+    // Getters and setters for Product attributes
+    // ...
+
+    public String toString() {
+        return "Product: " + name + ", Quantity: " + quantity + ", Price: " + price;
+    }
+}
+
+class Store {
+    private String name;
+    private String location;
+    private Product[] productList;
+    
+    public Store(String name, String location, Product[] productList) {
+        this.name = name;
+        this.location = location;
+        this.productList = productList;
+    }
+
+    // Getters and setters for Store attributes
+    // ...
+
+    public String toString() {
+        StringBuilder products = new StringBuilder();
+        for (Product product : productList) {
+            products.append(product.toString()).append("\n");
+        }
+        return "Store: " + name + ", Location: " + location + "\nProducts:\n" + products.toString();
+    }
+}
+
+class Company {
+    private String name;
+    private Store[] storeList;
+
+    public Company(String name, Store[] storeList) {
+        this.name = name;
+        this.storeList = storeList;
+    }
+
+    // Getters and setters for Company attributes
+    // ...
+
+    public String toString() {
+        StringBuilder stores = new StringBuilder();
+        for (Store store : storeList) {
+            stores.append(store.toString()).append("\n");
+        }
+        return "Company: " + name + "\nStores:\n" + stores.toString();
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        // Creating Products
+        Product[] productsStore1 = {
+            new Product("Product A", 10, 5.99),
+            new Product("Product B", 15, 8.50)
+        };
+        Product[] productsStore2 = {
+            new Product("Product X", 20, 12.75),
+            new Product("Product Y", 7, 6.49)
+        };
+
+        // Creating Stores
+        Store store1 = new Store("Store 1", "Location 1", productsStore1);
+        Store store2 = new Store("Store 2", "Location 2", productsStore2);
+
+        // Creating Company
+        Store[] stores = {store1, store2};
+        Company company = new Company("MyCompany", stores);
+
+        // Displaying Company information
+        System.out.println(company.toString());
+    }
+}
+```
+
+This code defines three classes: `Company`, `Store`, and `Product`, representing a company managing multiple stores, each containing various products. The relationships are established through aggregation (e.g., a `Store` aggregates `Product` objects) and association (e.g., `Company` associates with multiple `Store` objects). The `toString()` methods are overridden to provide a formatted string representation of each object's attributes and their relationships.
+
+**Day 4**
+
+
+1. **Decision-Making Structures in Java:**
+   - `if` statement: Executes a block of code based on a condition.
+   - `if-else` statement: Provides an alternative block of code if the condition is false.
+   - Nested `if-else`: Allows checking multiple conditions in sequence.
+   - `switch` statement: Tests a variable against multiple cases, executing code based on the matched case.
+
+2. **Java Control Flow Structures:**
+   - These structures control program flow based on conditions.
+   - `if`, `if-else`, nested `if-else`, and `switch` statements are fundamental in decision-making and branching.
+
+3. **Ternary Operator:**
+   - A concise conditional operator used for conditional expressions.
+   - Syntax: `(condition) ? valueIfTrue : valueIfFalse`.
+
+4. **Switch Statement in Java:**
+   - Tests a variable against multiple values (cases).
+   - Syntax allows sequential checking of cases until a match is found.
+   - Supports different variable types like integers, convertible integers, strings, or enums.
+   - `break` statements terminate the switch block, and `default` case is optional.
+
+**Day 5**
+
+
+1. **Identifiers and Naming Conventions**:
+   - Identifiers are names for variables, methods, classes, etc., composed of letters, numbers, underscores (_), and dollar signs ($).
+   - Follow CamelCase convention for readability: start with a lowercase letter for the first word and capitalize subsequent words.
+   
+2. **Access Modifiers**:
+   - Control the accessibility of classes, methods, and variables.
+   - Public: Allows unrestricted access.
+   - Protected: Access within the same package or by subclasses.
+   - Default (Package-private): Access within the same package.
+   - Private: Restricts access within the same class.
+
+3. **Non-Access Modifiers for Classes**:
+   - Final: Makes the class unextendable.
+   - Abstract: Indicates a class cannot be instantiated on its own and may contain abstract methods.
+
+4. **Non-Access Modifiers for Attributes/Fields**:
+   - Final: Makes the attribute unchangeable once assigned.
+   - Static: Indicates the attribute belongs to the class itself rather than instances.
+
+5. **Non-Access Modifiers for Methods**:
+   - Final: Prevents method overriding.
+   - Static: Method belongs to the class rather than instances.
+   - Abstract: Method doesn’t have a body and must be implemented in subclasses.
+   - Synchronized: Allows only one thread to access the method at a time.
+   - Native: Indicates method is implemented in platform-dependent code.
+
+6. **NetBeans Project Creation**:
+   - Creating a new project, packages, and classes within NetBeans.
+   - Structuring classes based on given attributes (e.g., Person, Contact, Employer, Vehicle).
+
+# WEEK 2
+
+**Day 2**
+
+The essential aspects of Git tools and terminologies:
+
+### Git Tools:
+
+1. **Git Bash:** 
+   - Provides a Unix-like command-line experience on Windows, bundled with Git for Windows.
+   - Executes Git and standard shell commands.
+
+2. **Git GUI:**
+   - Offers a visual interface for Git operations, simplifying version control tasks.
+   - Provides visual diff tools and intuitive functionalities.
+
+3. **Gitk:**
+   - A graphical history viewer tool depicting a project's history through commits and changes over time.
+
+### Commonly Used Git Terms:
+
+1. **Branch:**
+   - Divergent versions in a repository allowing different lines of development.
+
+2. **Checkout:**
+   - Switching between different versions or branches using `git checkout`.
+
+3. **Cherry-Picking:**
+   - Applying specific commits from one branch to another.
+
+4. **Clone:**
+   - Creating a local copy of a repository from a remote URL using `git clone`.
+
+5. **Fetch:**
+   - Retrieving branches, tags, and objects from other repositories using `git fetch`.
+
+6. **HEAD:**
+   - Represents the last commit in the current checked-out branch.
+
+7. **Index:**
+   - Staging area between the working directory and repository for preparing commits.
+
+8. **Master:**
+   - Default branch in Git repositories.
+
+9. **Merge:**
+   - Integrating changes from different branches into a single branch.
+
+10. **Origin:**
+    - Reference to the remote repository from which a project was cloned.
+
+11. **Pull/Pull Request:**
+    - Fetching changes or requesting a merge from a remote repository.
+
+12. **Push:**
+    - Uploading local repository content to a remote repository.
+
+13. **Rebase:**
+    - Rearranging commits by moving or combining them to a new base commit.
+
+14. **Remote:**
+    - Shared repository among team members for exchanging changes.
+
+15. **Repository:**
+    - Data structure storing files, their history, and metadata.
+
+16. **Stashing:**
+    - Temporarily storing incomplete changes without committing.
+
+17. **Tag:**
+    - Marks a specific point in Git history as important.
+
+18. **Upstream/Downstream:**
+    - References to repositories related to the current repository.
+
+19. **Revert:**
+    - Undoing a commit by creating a new commit that reverses changes.
+
+20. **Reset:**
+    - Undoing changes in different ways (soft, mixed, hard).
+
+21. **Ignore:**
+    - Specifying untracked files for Git to ignore.
+
+22. **Diff:**
+    - Displaying changes between various Git data sources.
+
+23. **Cheat Sheet:**
+    - Quick reference containing basic Git commands.
+
+24. **Git Flow:**
+    - A branching model designed for collaborative development.
+
+25. **Squash:**
+    - Combining multiple commits into a single commit.
+
+26. **Rm:**
+    - Removing files from the working directory and Git index.
+
+27. **Fork:**
+    - Copy of a repository allowing experimentation without affecting the original.
+
+Understanding these tools and terminologies is pivotal for mastering Git workflows and version control. 
+
+**Day 3**
+
+
+### Git Basics:
+
+1. **Version Control**:
+   Git is a distributed version control system that tracks changes in files and manages collaborative projects.
+
+2. **Local Repository**:
+   - `git init`: Initializes a new local repository.
+   - `git add`: Adds file changes to the staging area.
+   - `git commit`: Records changes in the repository.
+     - Options: `-m`, `-a`, `--amend`.
+
+3. **Remote Repository Interaction**:
+   - `git clone`: Creates a local copy of a remote repository.
+     - Cloning specific branches: `git clone -b <Branch name> <Repository URL>`.
+   - Pushing changes to a remote repository: `git push`.
+
+4. **Forking and Contributing**:
+   - `git fork`: Creates a copy of a repository in Git services like GitHub.
+   - Submitting pull requests to propose changes.
+
+5. **Branching and Merging**:
+   - `git branch`: Lists and creates branches.
+   - `git checkout -b <branch>`: Creates a new branch.
+   - Merging branches: `git merge`.
+
+### Advanced Git Operations:
+
+1. **Reverting Commits**:
+   - `git revert <commit_hash>`: Reverts a specific commit.
+
+2. **Interactive Rebase**:
+   - `git rebase -i <commit>`: Modifies commit history interactively for a better commit log.
+
+### Practice Steps:
+
+1. **Creating and Managing Repositories**:
+   - Creating a local repository.
+   - Adding files, committing changes.
+   - Pushing the local repository to GitHub.
+
+2. **Forking, Cloning, and Contributing**:
+   - Forking a repository on GitHub.
+   - Cloning a forked repository.
+   - Making changes, adding, committing, and submitting pull requests.
+
+3. **Branching, Merging, Reverting, and Interactive Rebase**:
+   - Creating branches, adding files, merging into the main branch.
+   - Reverting commits for undoing changes.
+   - Using interactive rebase for a more organized commit history.
+
+### Tips:
+- Always replace placeholders like repository URLs with actual values.
+- Use caution with commands that modify commit history, as they can have irreversible effects.
+- Git is a powerful tool, so experimenting in a safe environment is a great way to learn.
+
+
+
+
