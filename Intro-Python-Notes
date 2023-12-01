@@ -1,0 +1,470 @@
+## WEEK 1
+# Day 1
+
+**Installing Anaconda on Windows:**
+- Visit Anaconda's website and download the Windows version.
+- Choose the latest version for Python 3.x, usually 64-bit.
+- Run the downloaded installer, accept terms, and avoid adding Anaconda to PATH.
+- Access the Anaconda Prompt from the Start Menu to run Python code.
+
+**History of Python:**
+- Created by Guido van Rossum in the late 1980s.
+- Known for its simplicity and easy-to-read syntax.
+- Offers a comprehensive standard library.
+- Emphasizes clean, maintainable, and well-documented code.
+
+**Invoking the Interpreter:**
+- Python was created in the late 1980s for its simplicity and clear syntax.
+- The language prioritizes the programmer's experience, readability, and maintainability.
+
+**Using Jupyter Notebook with Anaconda:**
+- Launch Anaconda Navigator.
+- Select Jupyter Notebook.
+- Create a new Python notebook and start coding.
+
+**Comments in Python:**
+- Comments are denoted by the hash symbol (`#`) in Python.
+- Used for documentation, clarification, and code readability.
+- Improve code understanding and maintainability.
+
+**Creating Patterns in Python:**
+- You provided code to create a pattern of characters, including asterisks and spaces.
+- The code uses `print` statements and newline characters (`\n`) for spacing.
+- The output generates a visually interesting pattern with a header and footer.
+
+# Day 2
+
+**Introduction to Variables in Programming:**
+1. **Variables as Temporary Storage**: Variables store data temporarily in a computer's memory, holding various data types.
+2. **States of Variables**: Variables go through creation, assignment, and potential change during program execution.
+3. **Variable Destruction**: After the variable's scope finishes, it's destroyed, releasing memory.
+4. **Python Variable Definition**: In Python, variables are created using the assignment operator (=).
+5. **Naming Conventions**: Python has naming conventions for variables that enhance code readability.
+6. **Case Sensitivity**: Python identifiers are case-sensitive.
+7. **Reserved Keywords**: Python has reserved keywords that can't be used as variable names.
+8. **Special Methods**: Identifiers starting and ending with underscores have special meanings in Python.
+
+**Casting in Python:**
+1. **Implicit Casting**: Python performs automatic casting without data loss.
+2. **Explicit Casting**: You can explicitly cast values between data types.
+3. **Concatenation vs. Addition**: The `+` operator behaves differently based on data types.
+4. **Conversions between Data Types**: Converting between data types must consider potential data loss.
+5. **Casting Strings to Floats**: Casting a string to a float has specific rules.
+
+**Using Variables:**
+- Variables are used to store and manipulate data in Python. They can hold different data types.
+
+**Activity 1 - Consolidating Learnings:**
+- The script calculates the sum of two numbers and then subtracts 3 from the total.
+- It uses variables `num1` and `num2` for the numbers and displays the results with proper formatting.
+- The script demonstrates variable assignment, arithmetic operations, and string concatenation.
+
+**Activity 2 - Adding Totals as Characters:**
+- This script is an extension of the previous one.
+- It calculates and displays the sum and subtraction results as characters (strings) instead of numbers.
+- It uses string concatenation to create the concatenated result.
+
+# Day 3
+
+
+**1. Variables in Programming:**
+   - Variables are used to temporarily store data in a computer's memory.
+   - They go through three states: creation, assignment, and change.
+   - In Python, variables are defined using the assignment operator `=`.
+   - Naming conventions and case sensitivity in Python are important.
+   - Reserved keywords and special methods have naming restrictions.
+
+**2. Data Types in Python:**
+   - Python supports various data types: integers, booleans, floating-point numbers, complex numbers, and strings.
+   - Choosing the right data type is crucial for program performance.
+   - Python automatically handles type conversions, making it dynamically typed.
+
+**3. Working with Floating-Point Numbers:**
+   - Demonstrated formatting floating-point numbers in Python using format strings.
+   - Used `%f` to display full precision and `%.<n>f` to round to `n` decimal places.
+   - `%+.2f` was used to format with a plus sign for positive numbers.
+   - Conversion to octal, hexadecimal, and scientific notation was shown.
+
+**4. Working with Strings:**
+   - Showcased creating and formatting strings in Python.
+   - Demonstrated string concatenation using `+` and using `+=` for appending.
+   - Illustrated the use of escape sequences for line continuation.
+
+**5. Lambda Functions in Python:**
+   - Introduced lambda functions, which are small, anonymous functions.
+   - Lambda functions use the syntax `lambda arguments: expression`.
+   - They are often used for simple, one-line operations and are first-class objects.
+   - Lambda functions can be used with higher-order functions like `map` and `filter`.
+
+**6. Docstrings and Coding Style:**
+   - Covered best practices for writing docstrings, including concise summaries.
+   - Introduced function annotations as optional metadata about types.
+   - Emphasized Python coding style, including indentation, line length, and naming conventions.
+
+**7. Lambda Function Example - Logical Operation:**
+   - Demonstrated a lambda function to perform a logical operation on user-input values `x` and `y`.
+   - Converted the result to a human-friendly "True" or "False" output.
+
+**8. Example - Animal Information Output:**
+   - Took user input for animal type, species, and water consumption.
+   - Formatted the water consumption to display two decimal places.
+   - Used an f-string to display a user-friendly output with the entered information.
+
+#Day 4
+
+
+**Operators concept:**
+- Operators in programming are used for testing conditions, manipulating values, and performing various operations.
+- Expressions are combinations of values, variables, and operators that can be evaluated to produce a result.
+- Comparing different types depends on the programming language and its type coercion rules. Incompatible types can result in exceptions, like `TypeError`.
+- Complex numbers, which include real and imaginary parts, may raise exceptions when compared to other incompatible data types due to a lack of natural ordering.
+- Ordering operators like `<`, `<=`, `>`, and `>=` are used to compare values, but not all data types can be compared. They work with data types that have a defined order.
+
+**Operators and Functions:**
+- Mathematical operators include `+`, `-`, `*`, `/`, `//`, `%`, `-a`, and `+a` for performing arithmetic operations.
+- Mathematical functions like `abs()`, `int()`, `float()`, `complex()`, `divmod()`, and `pow()` perform specific mathematical tasks.
+- Additional mathematical functions like `math.trunc()`, `round()`, `math.floor()`, and `math.ceil()` provide rounding and truncation capabilities.
+- Comparison operators include `<`, `<=`, `>`, `>=`, `==`, `!=`, `is`, and `is not` for comparing values and object identity.
+
+**Daily Notes - Activity 1:**
+- This activity calculates the number of water bottles required to hold a given amount of water in liters.
+- It takes user input for the amount of water, calculates the number of bottles, and the remaining water in liters.
+- Results are displayed with proper formatting.
+
+**Daily Notes - Activity 2:**
+- This activity reports the amount of water released and the amount of water remaining in liters, converting milliliters to liters for display.
+- It also calculates and displays the percentage of water remaining.
+- Results are presented in a report format with appropriate formatting and headers.
+
+## WEEK 2
+# Day 1
+
+
+**Control Flow in Python:**
+- Control flow in Python determines the order in which code is executed.
+- Python has three primary types of control structures: sequential, selection, and repetition.
+
+**Sequential Control Flow:**
+- Sequential statements execute in a sequence, one after the other.
+
+**Selection/Decision Control Flow:**
+- Selection statements (decision control) allow you to make decisions and branch code based on conditions.
+- Common selection statements include: `if`, `if-else`, nested `if`, and `if-elif-else`.
+
+**Repetition Control Flow:**
+- Repetition statements are used to repeat a group of instructions.
+- Common repetition statements include: `for` loops and `while` loops.
+
+**Programming Tasks:**
+1. Displaying a Menu and Calculating Costs:
+   - Created a program that displays a menu with items and their prices.
+   - Takes user input in the form of numbers corresponding to menu items.
+   - Calculates and displays the cost of the selected item until an invalid number is entered.
+
+2. Counting Car Types:
+   - Program prompts the user to input car types (1 for luxury, 2 for commercial, 3 for sedan) until 0 is entered.
+   - Counts the number of each car type and displays the totals with corresponding messages.
+
+3. Iteration and Break Statement:
+   - Program uses a `while` loop to iterate.
+   - A variable counts the number of iterations and is printed at each iteration.
+   - After the fifth iteration, the loop stops and exits using the `break` statement.
+
+# Day 2
+
+
+**Introduction to Functions in Programming:**
+- Functions are named blocks of code designed for reusability.
+- Key concepts include parameters (input values) and return values (output).
+- Functions promote modularity in code by breaking complex tasks into manageable, reusable parts.
+- Functions have names, are called with parameters, and can be used to create custom logic or utilize built-in standard library functions.
+- Functions enhance code organization and efficiency.
+- Example in Python: A function can be defined to add two numbers.
+
+**Using Functions in Python:**
+- Functions are essential for code organization and reusability.
+- Functions have a name, parameters, and an optional code block.
+- They should be defined in script files to avoid code duplication and enhance modularity.
+- Distinguish between arguments (values passed to functions) and parameters (local variables within functions).
+- Python function syntax: `def function_name(parameter1, parameter2, ...):`
+- Functions can return values using the `return` statement.
+- Three types of functions in Python: Ordinary, Procedure, Factory.
+- Default parameters allow assigning default values to function parameters.
+- Functions promote modularity, code organization, and efficiency.
+
+**Daily Notes - Activity 1 - Read Methods:**
+- Program defines two functions: `fahrenheit_to_celsius` and `compare_temperatures`.
+- User inputs temperatures in Fahrenheit.
+- Temperatures are converted to Celsius using the `fahrenheit_to_celsius` function.
+- The program determines which day was colder using the `compare_temperatures` function.
+- Results are printed, indicating which day was colder or if they had the same temperature.
+
+**Daily Notes - Write Methods:**
+- The use of the random module in Python for generating random numbers.
+- Provides examples of functions like `randint`, `sample`, `choice`, and `randrange`.
+- Mentioned that these functions are bound methods of the `random.Random` class.
+
+**Daily Notes - Activity 2 - Write Methods:**
+- Program defines a function `calculate_average_and_check`.
+- User inputs marks until 0 is entered.
+- The program calculates the average of the entered marks.
+- The user inputs the student's previous term average.
+- The `calculate_average_and_check` function checks if the average is down and returns a corresponding value.
+- Based on the result, the program prints a message indicating pass/fail with distinction or failure due to a lower average.
+
+**My Own Views on Lists and Methods:**
+- Recursion is a technique where a function calls itself to solve a problem.
+- Useful for problems where the solution depends on previously solved instances of the same problem.
+- Provides an example of a Fibonacci recursive function.
+- The Fibonacci sequence starts with 0 and 1, and each number is the sum of the two preceding numbers.
+- The program calculates and prints the factorial of numbers from 0 to 10 using recursion.
+
+# Day 3
+
+
+**Python Modules and Packages:**
+
+1. **Modules in Python:**
+   - Modules are Python files that contain reusable code, including functions, classes, and variables.
+   - They serve as building blocks for organizing and structuring code.
+
+2. **Why Use Modules:**
+   - Promote code reusability, reducing redundant code.
+   - Enhance code organization by grouping related functions and classes.
+   - Provide a clear structure for large programs.
+
+3. **Standard Library Modules:**
+   - Python offers a rich standard library with pre-defined modules for various tasks, such as `os`, `time`, `math`, and more.
+
+4. **Using Modules:**
+   - Import modules with the `import` statement, like `import math`.
+   - Access module functions and variables using dot notation, e.g., `math.sqrt(16)`.
+
+5. **Creating Custom Modules:**
+   - Define your own functions, classes, and variables in a separate Python file.
+   - Import custom modules into other scripts as needed.
+
+6. **Module Namespaces:**
+   - Modules have their own namespaces to prevent naming conflicts.
+   - You can access items within a module using `module_name.item`.
+
+7. **Best Practices:**
+   - Document functions and classes within modules using docstrings.
+   - Keep module names concise and informative.
+
+8. **Module Aliasing:**
+   - Use aliasing to shorten module names, e.g., `import math as m`.
+   - Access functions and variables as `m.sqrt(16)`.
+
+**Module Loading and Management:**
+
+1. **Search Locations:**
+   - Python searches for modules in the program directory, directories in PYTHONPATH, and standard library directories.
+
+2. **Installing Modules:**
+   - Use `python -m pip install module_name` to install modules using pip.
+   - `conda` is specific to Anaconda; use it if you are using Anaconda for package management.
+   - Distribution-specific package manager commands like `sudo apt install` are not standard for Python modules.
+
+3. **Built-in Modules:**
+   - Imported modules like `math` provide direct access to functions and variables.
+   - Use `dir(module_name)` to list all items within a module for exploration.
+
+4. **Variable in a Module:**
+   - Store modules as `.py` files for reuse. E.g., `Module1.py`.
+
+**Difference Between Modules and Packages:**
+
+1. **Modules:**
+   - Contain Python code, including functions, classes, and variables.
+   - Serve as individual files for code organization.
+
+2. **Packages:**
+   - Are directories that contain one or more modules and sub-packages.
+   - Used for organizing related modules into a structured directory hierarchy.
+
+# Day 4
+
+
+### Regular Expression Concepts and Syntax:
+
+1. **Regular Expression Functions**: Python's `re` module provides functions like `compile`, `findall`, `finditer`, `match`, `search`, `split`, `sub`, `subn`, and `template` for working with regular expressions.
+
+2. **Regular Expression Syntax**:
+   - `.` (Dot): Matches any character except a newline. In DOTALL mode, it matches all characters.
+   - `^`: Matches the start of the string. In MULTILINE mode, it also matches after each newline.
+   - `$`: Matches the end of the string or before a newline in MULTILINE mode.
+   - `*`: Matches zero or more occurrences of the preceding expression.
+   - `+`: Matches one or more occurrences of the preceding expression.
+   - `?`: Matches zero or one occurrence of the preceding expression.
+   - `{m}`: Matches exactly m occurrences of the preceding expression.
+   - `{m,n}`: Matches from m to n occurrences of the preceding expression.
+   - `{m,n}?`: Matches as few occurrences as possible in the range m to n.
+
+3. **Escaping Special Characters**: Special characters like `*`, `?`, `[`, etc., need to be escaped with a backslash (e.g., `\*`, `\?`, `\[`).
+
+4. **Character Classes `[]`**: Used to indicate a set of characters. You can include individual characters, character ranges, and negate a set using `^`.
+
+5. **Pipe Operator `|`**: Matches either of the expressions separated by `|`. It's used to create alternatives.
+
+6. **Flags**:
+   - `re.I` (or `re.IGNORECASE`): Enables case-insensitive matching.
+   - `re.M` (or `re.MULTILINE`): Makes `^` match at the start and after every newline.
+   - `re.S` (or `re.DOTALL`): Allows `.` to match all characters, including newlines.
+   - `re.X` (or `re.VERBOSE`): Enables comments and whitespace in the expression.
+
+###Removing Numbers Except 5:
+
+Write a program that removes all numbers in a string except for the digit 5.
+
+### Validating Phone Number Format:
+
+Create a program to validate cell phone numbers in the format "+27X-XXX-XXXX" (standard South African format).
+
+### Identifying File Types:
+
+Design a program to identify file types based on their extensions (e.g., .txt, .docx) and recommend the appropriate software to open them (e.g., Notepad, MS Word). Customize the dictionary for more file types and software recommendations.
+
+## WEEK 3
+# Day 1
+
+
+**1. List Methods:**
+- Python lists have various methods for manipulation.
+- Methods like `append`, `extend`, `insert`, `remove`, and `pop` allow you to modify lists.
+- `index` finds the position of an item, `count` counts occurrences, and `sort` sorts the list.
+- `reverse` reverses the list, and `copy` creates a shallow copy.
+- Methods that modify lists return `None`.
+
+**2. Using Lists as Stacks and Queues:**
+- Lists can be used as a stack (Last-In, First-Out) using `append` and `pop`.
+- Using lists as queues (First-In, First-Out) is less efficient due to slow insertions.
+- `collections.deque` is recommended for efficient queues.
+- It supports fast appends and pops from both ends.
+
+**3. List Comprehensions:**
+- List comprehensions create lists by applying expressions and conditions.
+- Basic structure includes `[]`, an expression, `for` and `if` clauses.
+- Examples: creating lists of squares, combining elements from two lists, filtering, and more.
+
+**4. Nested List Comprehensions:**
+- Nested list comprehensions create and transpose matrices.
+- `zip()` can be used for matrix transposition and is efficient.
+- Built-in functions like `zip()` are preferred for such operations.
+
+**5. The `del` Statement and Tuples:**
+- `del` removes items from a list by index, or clears a list.
+- It can also delete entire variables.
+- Tuples are ordered collections of unique elements.
+- Tuple packing and unpacking allow efficient value assignment.
+
+**6. Sets and Dictionaries:**
+- Sets are collections of unique, unordered elements.
+- Dictionaries are collections of key-value pairs.
+- Keys in dictionaries must be unique and immutable.
+- Sets are useful for membership testing and unique values.
+
+**7. Looping Techniques:**
+- Loop through dictionaries using `items()`.
+- Use `enumerate()` to access both elements and indices in sequences.
+- `zip()` allows looping through multiple sequences in parallel.
+- `reversed()` and `sorted()` enable reverse and sorted iteration.
+- Avoid changing lists while looping.
+
+**8. More on Conditions:**
+- Conditions in Python include comparison and Boolean operators.
+- Comparison operators (`==`, `!=`, etc.) compare values.
+- Boolean operators (`and`, `or`, `not`) combine conditions.
+- Use parentheses to control operator priorities.
+
+**9. Comparing Sequences and Other Types:**
+- Sequences of the same type can be compared lexicographically.
+- Comparison is element by element, and nested sequences are compared recursively.
+- Python allows comparisons between objects of different types with appropriate comparison methods.
+
+# Day 2
+
+1. **Creating Lists:**
+   - Lists are created by placing elements inside square brackets `[]`.
+   - Lists can contain elements of different data types, including nested lists.
+
+2. **Accessing List Elements:**
+   - You can access list elements using the index operator `[]`.
+   - Lists use zero-based indexing, and you can also use negative indexing to access elements from the end.
+   - Slicing allows you to extract sublists from a list.
+
+3. **Adding and Changing List Elements:**
+   - Lists are mutable, meaning you can change their elements.
+   - You can use the `append()` method to add an element to the end of the list.
+   - The `extend()` method adds all elements from one list to another.
+   - The `insert()` method allows you to insert an item at a defined index.
+
+4. **Deleting List Elements:**
+   - You can delete one or more items from a list using the `del` keyword.
+   - The `remove()` method removes a specified item, and the `pop()` method removes and returns an element at the given index.
+   - The `clear()` method removes all items from the list.
+   - You can also assign an empty list to a slice to delete items.
+
+5. **List Methods:**
+   - Python provides various list methods, such as `index()`, `count()`, `sort()`, `reverse()`, and `copy()`, to manipulate and analyze lists.
+
+6. **List Comprehension:**
+   - List comprehension is an elegant way to create new lists from existing ones using a concise syntax.
+   - It consists of an expression followed by a `for` statement inside square brackets.
+
+7. **Other List Operations:**
+   - List membership tests using the `in` keyword.
+   - Iterating through a list using a `for` loop.
+
+# Day 3
+
+1. **Syntax Errors**: These are errors in Python code that occur due to violations of the language's syntax rules. They are detected during the parsing phase and are indicated by error messages pointing to the location of the issue.
+
+2. **Exceptions**: Exceptions are runtime errors in Python code. They can be caught and handled using `try` and `except` blocks to prevent program crashes and provide meaningful error messages.
+
+3. **Raising Exceptions**: The `raise` statement is used to raise exceptions when a specific condition is met, allowing you to create custom exceptions with descriptive error messages.
+
+4. **Assertions**: Assertions are used to check whether certain conditions are met. If the condition is not true, an `AssertionError` is raised. Assertions are useful for adding checks to code to ensure it behaves as expected.
+
+5. **Try-Except Blocks**: The `try` and `except` blocks are used to handle exceptions in Python. Code within the `try` block is executed, and if an exception occurs, it's caught by the corresponding `except` block.
+
+6. **Try-Finally Blocks**: The `finally` block is used for cleanup actions. It executes whether or not an exception occurs, making it useful for resource management.
+
+7. **User-Defined Exceptions**: Python allows you to create custom exceptions by deriving classes from standard built-in exceptions. This is useful when you need to provide specific information about an exception.
+
+8. **Clean-Up Actions**: The `try` statement can include a `finally` block, which defines clean-up actions that are executed under all circumstances, even if exceptions occur.
+
+9. **Documentation and Logging**: It's important to document error handling strategies and implement logging and monitoring to track and detect errors in real-time, allowing for proactive measures.
+
+# Day 4
+
+
+1. **Classes in Python:**
+   - Classes provide a way to bundle data and functionality together in Python.
+   - They allow the creation of new types of objects with attributes and methods.
+   - Python's class mechanism combines features from C++ and Modula-3.
+
+2. **Scope and Namespaces:**
+   - Python's scope rules involve namespaces, with different lifetimes for global, local, and module namespaces.
+   - Scopes are determined statically but used dynamically during execution.
+   - The global scope for a module is created when the module is defined and lasts until the interpreter quits.
+
+3. **Instance and Class Variables:**
+   - Instance variables are unique to each instance, while class variables are shared among all instances of a class.
+   - Care should be taken with mutable class variables to avoid unexpected behavior.
+
+4. **Creating a Python Class:**
+   - A Python class is defined using the `class` keyword.
+   - It includes class variables, an initializer method (`__init__`), and other methods.
+   - Class variables are shared, while instance variables are unique to each instance.
+
+5. **Method Invocation and Self Convention:**
+   - Methods can be invoked on instances, and the `self` convention is used as the first parameter.
+   - Clients should use data attributes carefully to avoid conflicts with methods.
+
+6. **Global Scope in Methods:**
+   - Methods may reference global names, and the global scope associated with a method is the module containing its definition.
+
+7. **Object-Oriented Nature:**
+   - Each value in Python is an object and has a class (type).
+   - Object-oriented programming principles are central to Python.
