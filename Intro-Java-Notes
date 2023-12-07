@@ -529,5 +529,35 @@ Understanding these tools and terminologies is pivotal for mastering Git workflo
 - Git is a powerful tool, so experimenting in a safe environment is a great way to learn.
 
 
+**Day 2**
+
+
+1. **V-Model:**
+    - Sequential model emphasizing validation and verification.
+    - Phases and corresponding testing stages are aligned in a V-shape.
+    - Involves detailed phases like Business Requirement Analysis, System Design, Architectural Design, and Module Design, ensuring thorough planning and testing at each step.
+
+2. **Spiral Model:**
+    - Risk-driven approach incorporating elements from different models.
+    - Phases include Identification, Design, Construct/Build, Evaluation, and Risk Analysis, allowing for iterative development and continuous risk assessment.
+
+3. **Big Bang Model:**
+    - Minimal planning and formal procedures.
+    - Works well for small projects with a small development team or academic projects.
+    - High risk due to its lack of structure and planning; suitable for repetitive or small projects with minimal risks.
+
+4. **Waterfall Model:**
+    - Traditional sequential model dividing the development process into phases.
+    - Emphasizes clear documentation, structured phases, and strict order of progression from requirements to testing and deployment.
+    - Rigid structure makes it challenging to accommodate changes in requirements and limits customer involvement until later stages.
+
+Regarding the Waterfall Model's drawbacks:
+- **Rigidity** in accommodating changes after phases are completed.
+- **Limited Customer Involvement** leading to potential misinterpretation of requirements.
+- **Late Detection of Errors** as testing occurs toward the end of the cycle.
+- **High Risk for Project Failure** if requirements are misunderstood.
+- **Inefficiency for Long Projects** due to its inflexible structure.
+
+These models have distinct advantages and disadvantages, making them suitable for different project scenarios based on factors like project size, complexity, and level of uncertainty in requirements. Each approach has its strengths and limitations, and choosing the right model depends on aligning the development approach with the project's specific needs and goals.
 
 
